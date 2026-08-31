@@ -22,7 +22,7 @@ Ejemplar: ${prestamo.ejemplar}
 Estado: ${prestamo.estado}`;
 }
 
-const prestamo: Prestamo = { multa: 350, ejemplar: 14, estado: 'VENCIDO', socio: 'Alberto' };
+const prestamo: Prestamo = { multa: 350, ejemplar: 14, estado: 'vencido', socio: 'Alberto' };
 
 console.log(generarRecibo(prestamo));
 console.log("total a pagar: " + calcularMulta(prestamo));
