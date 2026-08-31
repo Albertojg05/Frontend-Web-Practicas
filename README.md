@@ -12,3 +12,20 @@ Paso 4: De las dos líneas que usan const, ¿por qué sólo una falla?
 Porque const no te deja cambiar la variable completa por otra cosa, pero sí te permite modificar lo que tiene adentro
 Al asignarle un texto a la variable con let, nadie escribió que fuera un número. ¿De dónde salió ese tipo?
 Salió de la inferencia de tipos: TypeScript vio que le asignaste un número al inicio y automáticamente le puso ese tipo.
+
+Paso 5:
+Error 1: Omitir una propiedad
+Qué esperaba: Un objeto que contenga la propiedad obligatoria.
+Qué recibió: Un objeto sin la propiedad multa.
+Línea: 25
+Error: TS2741: Property 'multa' is missing in type '{ ejemplar: number; estado: "activo"; socio: string; }' but required in type 'Prestamo'.
+Error 2: Estado no valido
+Qué esperaba: Un valor en minúsculas del tipo Estado.
+Qué recibió: El string 'VENCIDO' en mayúsculas.
+Línea: 26
+Error: TS2820: Type '"VENCIDO"' is not assignable to type 'Estado'. Did you mean '"vencido"'?
+Error 3: Tipo incompatible
+Qué esperaba: Un valor de tipo string para la propiedad socio.
+Qué recibió: Un valor de tipo number.
+Línea: 26
+Error: TS2322: Type 'number' is not assignable to type 'string'.
