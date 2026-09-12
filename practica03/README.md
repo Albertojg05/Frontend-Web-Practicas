@@ -1,11 +1,15 @@
 # Frontend-Web-Practicas
 
-PRACTICA 2 - MOSTRADOR DE LA BIBLIOTECA RESPUESTAS
+PRACTICA 3 - La Capa de Dominio con Genéricos y Patrones
 
-¿por qué una unión de valores y no una enumeración?
-No mete código extra a JavaScript: La unión de textos ('activo' | 'devuelto' | 'vencido') desaparece por completo cuando TypeScript se compila. Un enum, en cambio, crea un objeto real en el archivo .js final que ocupa espacio sin necesidad.
-¿qué se gana con el tipo desconocido en lugar del que acepta todo?
-any apaga las alarmas del compilador: te deja hacer lo que sea con la variable y, si te equivocas, el programa truena hasta que está corriendo.  
-unknown te obliga a ir a la segura: no te permite usar el dato hasta que verifiques primero con un if o typeof qué tipo de valor es realmente. 
-¿por qué la fecha entra como parámetro?
-Para poder simular cualquier día: Si usas new Date() adentro de la función, quedas atado a la fecha y hora de ese instante. Al pasarla como parámetro, puedes probar préstamos entregados a tiempo, préstamos vencidos hace 5 días o multas futuras sin tener que cambiarle la hora al reloj de tu computadora.
+1. ¿Hizo falta una base de datos real para probar la regla de negocio? ¿Qué dice eso sobre para qué sirve el patrón Repository?
+
+    No hizo falta. Demuestra que el patrón Repository sirve para separar la lógica del negocio del almacenamiento; a las reglas no les importa dónde se guardan los datos
+
+2. El Service recibe el repositorio como Repository<Prestamo>, no InMemoryPrestamoRepository. ¿Qué se rompía si usaban la clase concreta?
+
+    Se rompe el desacoplamiento. Si el Service usa la clase concreta, queda amarrado a trabajar únicamente con memoria, impidiendo cambiar a una base de datos real sin tener que modificar el código del Service.
+
+3. Si cambiaran el Map en memoria por una base de datos real, ¿cuántos archivos tocarían? ¿Por qué tan pocos?
+
+    Solo se modificaría la nueva clase del repositorio que conecte a la base de datos y el archivo main para pasarle la nueva instancia. Son tan pocos porque el Service y las entidades dependen de la interfaz genérica, no de cómo está implementada la persistencia.
