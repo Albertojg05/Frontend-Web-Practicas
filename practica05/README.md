@@ -1,10 +1,14 @@
 # Frontend-Web-Practicas
 
-PRACTICA 4 - De la Capa de Dominio a una API HTTP
+PRACTICA 5 - Mi Primera API con NestJS
 
-1. Express manda los rechazos de un handler async directo al middleware de errores, sin try/catch en cada ruta. ¿Qué tendrían que agregar en cada ruta si esto no fuera así?
-   Un bloque try/catch y llamar manualmente a next(error) en el catch
-3. ¿Por qué el servicio no lanza directamente un 409 en vez de EjemplarPrestadoError?
-   Porque la capa de dominio/servicio debe ser agnóstica a la web.
-5. Si mañana agregaran una app móvil que también consume esta API, ¿qué archivos de esta práctica tendrían que tocar?
-   Ninguno. La API ya devuelve JSON estándar sobre HTTP, así que la app móvil se conecta directamente usando las mismas rutas sin tener que cambiar nada en el servidor.
+1. ¿Qué generó el comando nest new?
+Generó el esqueleto inicial de la aplicación con TypeScript configurado, gestión de paquetes, configuración de linters y pruebas, además de la arquitectura modular básica.
+2. ¿Qué hace el AppService que ya viene generado?
+Encapsula la lógica de negocio básica de la aplicación. Por defecto, provee el método "getHello()" que retorna la cadena "'Hello World!'".
+3. ¿Por qué la ruta funciona sin declarar nada en app.module.ts?
+Porque "AppController" ya se encuentra registrado dentro del arreglo de "controllers" del decorador, por lo que NestJS mapea automáticamente cualquier endpoint añadido en dicho controlador.
+4. ¿Qué pasaría si el cuerpo de la petición viniera vacío?
+Al no tener implementados DTOs, la petición se procesaría con un objeto vacío, lo que provocaría que se inserte en el arreglo un elemento sin propiedades o con valores "undefined".
+5. ¿En qué archivo vive hoy toda la lógica de la práctica? 
+En "app.controller.ts", ya que en él se definieron el almacenamiento en memoria (el arreglo de clases) y los métodos para manejar y procesar las peticiones "GET" y "POST".
