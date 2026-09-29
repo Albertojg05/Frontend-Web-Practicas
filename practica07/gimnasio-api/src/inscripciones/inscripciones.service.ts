@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { InscripcionMemoriaRepository } from './infra/inscripcion-memoria.repository';
-import type { InscripcionRepository } from './dominio/inscripcion.repository';
+import type { InscripcionRepository } from '../dominio/inscripcion.repository';
 import { INSCRIPCION_REPOSITORY } from './inscripciones.token';
-import { Inscripcion } from './dominio/entidades';
-import { CrearInscripcionDto } from './dto/crear-inscripcion.dto';
-import { CupoLlenoError, HorarioNoEncontradoError, InscripcionDuplicadaError, MiembroNoEncontradoError } from './dominio/errores';
+import { Inscripcion } from '../dominio/entidades';
+import { CrearInscripcionDto } from 'src/inscripciones/dto/crear-inscripcion.dto';
+import { CupoLlenoError, HorarioNoEncontradoError, InscripcionDuplicadaError, MiembroNoEncontradoError } from '../dominio/errores';
 
 @Injectable()
 export class InscripcionesService {

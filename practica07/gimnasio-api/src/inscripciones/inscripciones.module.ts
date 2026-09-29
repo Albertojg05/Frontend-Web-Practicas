@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { InscripcionesController } from './inscripciones.controller';
 import { InscripcionesService } from './inscripciones.service';
-import { InscripcionMemoriaRepository } from './infra/inscripcion-memoria.repository';
+import { InscripcionMemoriaRepository } from 'src/infra/inscripcion-memoria.repository';
 import { INSCRIPCION_REPOSITORY } from './inscripciones.token';
 
 @Module({

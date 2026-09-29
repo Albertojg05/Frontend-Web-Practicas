@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { HORARIOS, MIEMBROS } from '../../datos/gimnasio.seed';
-import { Inscripcion, NuevaInscripcion } from '../dominio/entidades';
-import { InscripcionRepository } from '../dominio/inscripcion.repository';
+import { HORARIOS, MIEMBROS } from 'src/datos/gimnasio.seed';
+import { Inscripcion, NuevaInscripcion } from 'src/dominio/entidades';
+import { InscripcionRepository } from 'src/dominio/inscripcion.repository';
 
 // La palabra clave es "implements": esta clase promete cumplir la
 // interfaz de arriba. En la Sesion 7, InscripcionPrismaRepository

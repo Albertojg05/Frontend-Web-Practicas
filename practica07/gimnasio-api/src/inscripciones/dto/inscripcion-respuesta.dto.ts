@@ -1,4 +1,4 @@
-import { Inscripcion } from '../dominio/entidades';
+import { Inscripcion } from "src/dominio/entidades";
 
 export interface InscripcionResponseDto {
   id: number;

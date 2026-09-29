@@ -24,3 +24,9 @@ export class InscripcionDuplicadaError extends Error {
     super(`El miembro ${miembroId} ya esta inscrito en el horario ${horarioId}`);
   }
 }
+
+export class MiembroDuplicadoError extends Error {
+  constructor(correo: string) {
+    super(`El correo ${correo} ya está registrado`)
+  }
+}

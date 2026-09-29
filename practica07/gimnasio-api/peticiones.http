@@ -1,3 +1,27 @@
+### Práctica 7 - Miembros del gimnasio
+@host = http://localhost:3000
+
+### 1. Metodo listar
+GET {{host}}/miembros
+
+### 2. Metodo buscar
+GET {{host}}/miembros/1
+
+### 3. Metodo crear
+POST {{host}}/miembros
+Content-Type: application/json
+
+{"nombre": "Juan García", "correo": "juan.garcia@itson.mx", "membresia": "premium"}
+
+### 4. Metodo actualizar
+PATCH {{host}}/miembros/2
+Content-Type: application/json
+
+{"nombre": "Carlos Cruz", "correo": "Carlos.Cruz@gmail.com"}
+
+### 5. Metodo eliminar
+DELETE {{host}}/miembros/3
+
 ### Practica 6 - Inscripciones al gimnasio (SOLUCION)
 ###
 ### COMO SE USA:
@@ -8,8 +32,6 @@
 ### OJO: el orden importa. El horario 1 tiene cupoMaximo = 2, asi que las
 ### peticiones 1, 2 y 3 hay que correrlas EN ORDEN para ver el 409.
 ### Todo vive en memoria: si reinicias el servidor, vuelve a cero.
-
-@host = http://localhost:3000
 
 ### 1. Primera inscripcion  ->  201 + header Location
 POST {{host}}/inscripciones
