@@ -27,6 +27,6 @@ export class InscripcionDuplicadaError extends Error {
 
 export class MiembroDuplicadoError extends Error {
   constructor(correo: string) {
-    super(`El correo ${correo} ya está registrado`)
+    super(`El correo ${correo} ya se registro`)
   }
 }
