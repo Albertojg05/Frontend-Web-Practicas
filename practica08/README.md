@@ -1,6 +1,6 @@
 # Frontend-Web-Practicas
 
-PRACTICA  - Prisma: esquema y migraciones
+PRACTICA 8 - Prisma: esquema y migraciones
 
 1. ¿editar schema.prisma cambió algo en la base de datos antes de migrar?
 No, porque el esquema es solo un archivo de texto y la base de datos no se modifica hasta que ejecutas el comando de migración
