@@ -7,60 +7,71 @@ import './boton-app'; // la tarjeta lleva un <boton-app> adentro
 const pesos = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
 
 export class TarjetaProducto extends HTMLElement {
-  // ENTRADAS del contrato.
-  static observedAttributes = ['producto-id', 'nombre', 'precio', 'imagen', 'existencia'];
+    // ENTRADAS del contrato.
+    static observedAttributes = ['producto-id', 'nombre', 'precio', 'imagen', 'existencia'];
 
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+    }
 
-  connectedCallback() {
-    this.pintar();
-  }
+    connectedCallback() {
+        this.pintar();
+    }
 
-  attributeChangedCallback() {
-    // Si cambia un atributo antes de entrar a la página, todavía no se pinta.
-    if (this.isConnected) this.pintar();
-  }
+    attributeChangedCallback() {
+        // Si cambia un atributo antes de entrar a la página, todavía no se pinta.
+        if (this.isConnected) this.pintar();
+    }
 
-  private pintar() {
-    // Todo llega como texto: el precio y la existencia se convierten a número.
-    const id = this.getAttribute('producto-id') ?? '';
-    const nombre = this.getAttribute('nombre') ?? '';
-    const precio = Number(this.getAttribute('precio'));
-    const imagen = this.getAttribute('imagen') ?? '';
-    const existencia = Number(this.getAttribute('existencia'));
-    const agotado = existencia === 0; // la regla de negocio vive AQUÍ adentro
+    private pintar() {
+        // Todo llega como texto: el precio y la existencia se convierten a número.
+        const id = this.getAttribute('producto-id') ?? '';
+        const nombre = this.getAttribute('nombre') ?? '';
+        const precio = Number(this.getAttribute('precio'));
+        const imagen = this.getAttribute('imagen') ?? '';
+        const existencia = Number(this.getAttribute('existencia'));
+        const agotado = existencia === 0; // la regla de negocio vive AQUÍ adentro
+        let htmlExistencia = `<p class="existencia">${existencia} disponibles</p>`;
+        let atributoBoton = '';
 
-    // ADENTRO: el marcado. Quien usa la tarjeta no necesita saber cómo es.
-    this.shadowRoot!.innerHTML = `
+        if (existencia === 0) {
+            htmlExistencia = `<p class="existencia agotado">Agotado</p>`;
+            atributoBoton = 'deshabilitado'; // Asegúrate de usar el atributo que programaste en boton-app.ts (puede ser 'disabled' o 'deshabilitado')
+        }
+
+        // ADENTRO: el marcado. Quien usa la tarjeta no necesita saber cómo es.
+        this.shadowRoot!.innerHTML = `
       <style>${estilos}</style>
 
      <article class="tarjeta">
-        <img src= ${imagen}  alt=${nombre}>
-        <div class="cuerpo">
-            <h3>${nombre}</h3>
-            <p class="precio">${pesos.format(precio)}</p>
-            <p class="existencia">${existencia} disponibles</p>
-            <boton-app>Agregar al carrito</boton-app>
-        </div>
-    </article>
+    <img src="${imagen}" alt="${nombre}">
+    <div class="cuerpo">
+      <h3>${nombre}</h3>
+      <p class="precio">$${precio}</p>
+      
+      <!-- Aquí se inserta el párrafo condicional -->
+      ${htmlExistencia}
+      
+      <!-- Aquí se inserta el atributo condicional -->
+      <boton-app ${atributoBoton}>Agregar al carrito</boton-app>
+    </div>
+  </article>
     `;
 
-    // SALIDA: al presionar el botón, la tarjeta AVISA. No sabe quién escucha.
-    this.shadowRoot!.querySelector('boton-app')!.addEventListener('click', () => {
-      if (agotado) return;
-      const detalle: DetalleAgregar = { id, nombre, precio };
-      this.dispatchEvent(
-        new CustomEvent('agregar', {
-          detail: detalle,  // lo que viaja con el aviso
-          bubbles: true,    // que suba por el árbol hasta #rejilla
-          composed: true,   // que pueda SALIR del Shadow DOM
-        }),
-      );
-    });
-  }
+        // SALIDA: al presionar el botón, la tarjeta AVISA. No sabe quién escucha.
+        this.shadowRoot!.querySelector('boton-app')!.addEventListener('click', () => {
+            if (agotado) return;
+            const detalle: DetalleAgregar = { id, nombre, precio };
+            this.dispatchEvent(
+                new CustomEvent('agregar', {
+                    detail: detalle,  // lo que viaja con el aviso
+                    bubbles: true,    // que suba por el árbol hasta #rejilla
+                    composed: true,   // que pueda SALIR del Shadow DOM
+                }),
+            );
+        });
+    }
 }
 
 customElements.define('tarjeta-producto', TarjetaProducto);
