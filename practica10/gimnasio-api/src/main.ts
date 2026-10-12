@@ -8,6 +8,7 @@ import { DominioExceptionFilter } from './comun/filtros/dominio.filter';
 import { LoggingInterceptor } from './comun/interceptores/logging.interceptor';
 import { SobreInterceptor } from './comun/interceptores/sobre.interceptor';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard'; // NUEVO (Paso 4)
+import { RolesGuard } from './auth/guards/roles.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,7 +26,7 @@ async function bootstrap() {
 
   // NUEVO (Paso 4): el guardia para TODAS las rutas.
   const reflector = app.get(Reflector);             // el guard lo usa para leer @Publico()
-  app.useGlobalGuards(new JwtAuthGuard(reflector)); // tarea: + new RolesGuard(reflector)
+  app.useGlobalGuards(new JwtAuthGuard(reflector)), new RolesGuard(reflector); // tarea: + new RolesGuard(reflector)
 
   // NUEVO (Paso 6): la documentacion OpenAPI.
   const config = new DocumentBuilder()

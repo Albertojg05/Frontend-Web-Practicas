@@ -258,18 +258,15 @@ Content-Type: application/json
 
 { "correo": "karla@itson.mx", "password": "gimnasio2026" }
 
-@tokenKarla = {{loginKarla.response.body.data.access_token}}
-
-
 ### 40. Lo que viaja dentro del token  ->  200
 GET {{host}}/auth/yo
-Authorization: Bearer {{tokenKarla}}
+Authorization: Bearer {{loginKarla.response.body.data.access_token}}
 
 
 ### 41. Karla se inscribe a si misma  ->  201
 POST {{host}}/inscripciones
 Content-Type: application/json
-Authorization: Bearer {{tokenKarla}}
+Authorization: Bearer {{loginKarla.response.body.data.access_token}}
 
 { "horarioId": 3, "miembroId": 1 }
 
@@ -277,7 +274,7 @@ Authorization: Bearer {{tokenKarla}}
 ### 42. EL HUECO CERRADO: Karla intenta inscribir a Sofia  ->  403
 POST {{host}}/inscripciones
 Content-Type: application/json
-Authorization: Bearer {{tokenKarla}}
+Authorization: Bearer {{loginKarla.response.body.data.access_token}}
 
 { "horarioId": 3, "miembroId": 3 }
 
@@ -294,3 +291,11 @@ POST {{host}}/auth/registro
 Content-Type: application/json
 
 { "correo": "omar@itson.mx", "password": "gimnasio2026", "miembroId": 2 }
+
+### Prueba CORS Permitido
+GET {{host}}/clases
+Origin: http://localhost:5173
+
+### Prueba CORS Denegado
+GET {{host}}/clases
+Origin: http://localhost:4000

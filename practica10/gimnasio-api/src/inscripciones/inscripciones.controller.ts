@@ -17,6 +17,7 @@ import { aInscripcionDto } from './dto/inscripcion-respuesta.dto';
 // NUEVO (Paso 5)
 import { UsuarioActual } from '../auth/decoradores/usuario-actual.decorator';
 import { Rol, type PayloadJwt } from '../auth/dominio/usuario';
+import { Roles } from 'src/auth/decoradores/roles.decorator';
 
 @Controller('inscripciones')
 export class InscripcionesController {
@@ -61,6 +62,7 @@ export class InscripcionesController {
   }
 
   @Delete(':id')
+  @Roles(Rol.admin, Rol.entrenador)
   async cancelar(@Param('id') id: string) {
     const cancelada = await this.servicio.cancelar(Number(id));
     if (!cancelada) {
