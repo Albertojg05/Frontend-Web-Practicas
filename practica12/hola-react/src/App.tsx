@@ -7,9 +7,9 @@ export default function App() {
       <Saludo nombre="ISW" />
 
       <section className="equipo"> 
-        <TarjetaPerfil nombre="Juan Pérez" carrera="Ingeniería en Sistemas" semestre={5} />
-        <TarjetaPerfil nombre="María García" carrera="Ingeniería en Computación" semestre={4} />
-        <TarjetaPerfil nombre="Carlos López" carrera="Ingeniería en Electrónica" semestre={3} />
+        <TarjetaPerfil nombre="Alberto Jiménez" carrera="Ingeniería en Software" semestre={6} />
+        <TarjetaPerfil nombre="Ramón Valencia" carrera="Ingeniería en Software" semestre={7} />
+        <TarjetaPerfil nombre="Sebastian Ceja" carrera="Ingeniería en Mecatronica" semestre={5} />
       </section>
     </main>
   );
