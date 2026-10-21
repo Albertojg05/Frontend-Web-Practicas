@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { productos, type Producto } from "./datos.ts";
-import { Layout } from "./layout.tsx"
-import { Encabezado } from "./encabezado.tsx"
+import { Layout } from "./Layout.tsx"
+import { Encabezado } from "./Encabezado.tsx"
 import { PiePagina } from "./PiePagina.tsx"
 import { Catalogo } from "./Catalogo.tsx";
 import { Filtros } from "./Filtros.tsx";
