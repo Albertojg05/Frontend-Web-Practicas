@@ -1,32 +1,44 @@
 /* ==========================================================================
-   index.css — los estilos de la tienda (Prácticas 12B y 13).
+   index.css — los estilos de la tienda (Prácticas 12 y 13).
    CSS plano, una clase por pieza. No se toca en la práctica: se pega tal cual
    en src/index.css. Ya trae lo de la Práctica 13 (cargando, error y pago).
    ========================================================================== */
 
 :root {
-  --color-cian:   #00aeef;
-  --color-azul:   #0066cc;
+  --color-cian: #00aeef;
+  --color-azul: #0066cc;
   --color-morado: #8c52ff;
-  --color-verde:  #2e9e5b;
-  --color-rojo:   #dc2626;
-  --color-tinta:  #111827;
-  --color-texto:  #374151;
-  --color-tenue:  #6b7280;
-  --color-linea:  #e5e7eb;
-  --color-fondo:  #f7f8fc;
-  --radio:        12px;
+  --color-verde: #2e9e5b;
+  --color-rojo: #dc2626;
+  --color-tinta: #111827;
+  --color-texto: #374151;
+  --color-tenue: #6b7280;
+  --color-linea: #e5e7eb;
+  --color-fondo: #f7f8fc;
+  --radio: 12px;
   font-family: "Barlow", "Segoe UI", system-ui, sans-serif;
   color: var(--color-texto);
   background: var(--color-fondo);
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-body { margin: 0; }
+body {
+  margin: 0;
+}
 
-button { font: inherit; cursor: pointer; }
-button:disabled { cursor: not-allowed; }
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
 
 /* ---------- <Layout> ---------- */
 .tienda {
@@ -40,7 +52,8 @@ button:disabled { cursor: not-allowed; }
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 28px 24px 120px;   /* abajo deja lugar para el pie fijo */
+  padding: 28px 24px 120px;
+  /* abajo deja lugar para el pie fijo */
 }
 
 /* ---------- <Encabezado> ---------- */
@@ -73,11 +86,21 @@ button:disabled { cursor: not-allowed; }
   font-weight: 600;
 }
 
-.encabezado__carrito strong { color: var(--color-azul); }
+.encabezado__carrito strong {
+  color: var(--color-azul);
+}
 
 /* ---------- Título de la página ---------- */
-.portada h1 { margin: 0; font-size: 32px; color: var(--color-tinta); }
-.portada p  { margin: 6px 0 0; color: var(--color-tenue); }
+.portada h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--color-tinta);
+}
+
+.portada p {
+  margin: 6px 0 0;
+  color: var(--color-tenue);
+}
 
 /* ---------- <Filtros> ---------- */
 .filtros {
@@ -100,6 +123,8 @@ button:disabled { cursor: not-allowed; }
   background: var(--color-azul);
   border-color: var(--color-azul);
   color: #fff;
+  border-radius: 999px;
+  padding: 7px 16px;
 }
 
 /* ---------- <Catalogo> ---------- */
@@ -134,10 +159,29 @@ button:disabled { cursor: not-allowed; }
   padding: 14px 16px 16px;
 }
 
-.tarjeta__nombre { margin: 0; font-size: 17px; color: var(--color-tinta); }
-.tarjeta__precio { margin: 0; font-size: 20px; font-weight: 700; color: var(--color-azul); }
-.tarjeta__existencia { margin: 0; font-size: 14px; color: var(--color-tenue); }
-.tarjeta__existencia--agotado { color: var(--color-rojo); font-weight: 600; }
+.tarjeta__nombre {
+  margin: 0;
+  font-size: 17px;
+  color: var(--color-tinta);
+}
+
+.tarjeta__precio {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-azul);
+}
+
+.tarjeta__existencia {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-tenue);
+}
+
+.tarjeta__existencia--agotado {
+  color: var(--color-rojo);
+  font-weight: 600;
+}
 
 .tarjeta__boton {
   margin-top: auto;
@@ -149,7 +193,10 @@ button:disabled { cursor: not-allowed; }
   font-weight: 600;
 }
 
-.tarjeta__boton:disabled { background: var(--color-linea); color: var(--color-tenue); }
+.tarjeta__boton:disabled {
+  background: var(--color-linea);
+  color: var(--color-tenue);
+}
 
 /* ---------- <PiePagina>: el carrito, fijo abajo ---------- */
 .pie {
@@ -167,8 +214,15 @@ button:disabled { cursor: not-allowed; }
   color: #fff;
 }
 
-.pie__resumen { font-size: 17px; }
-.pie__total { font-size: 22px; font-weight: 700; color: var(--color-cian); }
+.pie__resumen {
+  font-size: 17px;
+}
+
+.pie__total {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-cian);
+}
 
 .pie__boton {
   padding: 9px 18px;
@@ -204,7 +258,11 @@ button:disabled { cursor: not-allowed; }
   animation: girar 0.8s linear infinite;
 }
 
-@keyframes girar { to { transform: rotate(360deg); } }
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .error {
   padding: 24px;
@@ -236,9 +294,18 @@ button:disabled { cursor: not-allowed; }
   border-radius: var(--radio);
 }
 
-.pago h2 { margin: 0; font-size: 20px; color: var(--color-tinta); }
+.pago h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--color-tinta);
+}
 
-.pago label { display: grid; gap: 4px; font-size: 14px; font-weight: 600; }
+.pago label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
 
 .pago input {
   padding: 9px 12px;
@@ -247,7 +314,11 @@ button:disabled { cursor: not-allowed; }
   font: inherit;
 }
 
-.pago__error { margin: 0; color: var(--color-rojo); font-size: 14px; }
+.pago__error {
+  margin: 0;
+  color: var(--color-rojo);
+  font-size: 14px;
+}
 
 .pago button {
   padding: 11px;
@@ -258,7 +329,9 @@ button:disabled { cursor: not-allowed; }
   font-weight: 700;
 }
 
-.pago button:disabled { opacity: 0.6; }
+.pago button:disabled {
+  opacity: 0.6;
+}
 
 .confirmacion {
   margin: 32px 0 0;
